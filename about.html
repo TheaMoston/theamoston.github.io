@@ -16,8 +16,8 @@
                 <li><a href="/about.html">About</a></li>
         </ul>
         <div class="content">
-            <div style="display: flex; justify-content: flex-start; width: 100%">
-                <img src="/resources/about-image.png"/>
+            <div>
+                <img style="width: 80vw" src="/resources/about-image.png"/>
             </div>
             <p>My name is Thea and I think art is cool.</p>
         </div>
@@ -25,10 +25,10 @@
     <script>
         toggleMenu = function() {
             menu = document.getElementById("navbar");
-            if (menu.style.display == 'none') {
-                menu.style.display = 'flex';
-            } else {
+            if (menu.style.display == 'flex') {
                 menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
             }
         }
     </script>
