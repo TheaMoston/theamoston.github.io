@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <head>
     <link href="style.css" rel="stylesheet"  type="text/css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <header>
+    <div><img src="resources/hamburger.png" class="hamburger" onclick="toggleMenu()"/></div>
     <h1><a href="/">Thea Moston</a></h1>
 </header>
 <body>
     <div class="page-layout">
-        <ul class="navbar">
+        <ul class="navbar" id="navbar">
                 <li><a href="/">Home</a></li>
                 <li><a href="/works.html">Works</a></li>
                 <li><a href="/about.html">About</a></li>
@@ -21,4 +22,14 @@
             <p>My name is Thea and I think art is cool.</p>
         </div>
     </div>
+    <script>
+        toggleMenu = function() {
+            menu = document.getElementById("navbar");
+            if (menu.style.display == 'none') {
+                menu.style.display = 'flex';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+    </script>
 </body>
