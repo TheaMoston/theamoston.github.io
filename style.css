@@ -4,8 +4,8 @@ body {
 
 header {
     width: 100%;
-    margin-top: -2vh;
-    height: 22vh;
+    margin-top: -2em;
+    height: 10em;
     position: fixed;
     z-index: 2;
     background: white;
@@ -31,7 +31,7 @@ header h4 {
 }
 
 .navbar {
-    margin-top: 25vh;
+    margin-top: 10em;
     position: fixed;
     width: 30em;
     list-style: none;
@@ -100,7 +100,7 @@ header h4 {
 .content {
     margin-left: 20%;
     width: 80%;
-    margin-top: 20vh;
+    margin-top: 8em;
     height: 80vh;
     margin-right: 2em;
     z-index: 0;
