@@ -22,6 +22,14 @@ header h1 a {
     color: black;
 }
 
+.title {
+    transition: ease-in-out 450ms;
+}
+
+.title:hover {
+    transform:scaleX(100%);
+    transition: ease-in-out 450ms;
+}
 
 .navbar {
     display: flex;
@@ -37,7 +45,7 @@ header h1 a {
     color: black;
 }
 
-.navbar li a:hover {
+.navbar a:hover {
     text-decoration: underline;
     transition: ease-in-out 250ms;
 }
@@ -59,9 +67,19 @@ header h1 a {
 }
 
 .work:hover {
-    border: 2px black solid;
+    border: 2px rgb(235, 237, 237) solid;
+    border-radius: 1%;
+    background: rgb(235, 237, 237);
     cursor: pointer;
     transition: ease-in-out 250ms;
+}
+
+.empty-work {
+    height: 6cm;
+    width: 6cm;
+    margin: 8px;
+    z-index: 2;
+    padding: 2px;
 }
 
 .work div {
