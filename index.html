@@ -16,23 +16,124 @@
 </header>
 <body style="overflow: hidden;">
     <div class="page-layout">
-        <div class="content">
-            <canvas id="canvas"></canvas>
+        <div class="content" style="overflow: hidden; padding-bottom: 10vw;">
+
+                <canvas id="canvas"></canvas>
         </div>
     </div>
     <script>
+
+        let grid;
+
+        let gridWidth;
+        let gridHeight;
+
+        let row_index = 0;
+
+        let previous_row;
+        let next_row;
+        let cellWidth;
+
+        let epsilon = 0
+        let epsilon_updating = false
+
+        let fps = 10
+
         window.onload = function() {
             canvas = document.getElementById("canvas");
             ctx = canvas.getContext("2d");
-            ctx.fillStyle = "black"
-            var loop = setInterval(draw, 1000/1)
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight * 0.7;
+            console.log(canvas.width)
+            console.log(canvas.height)
+
+            grid = []
+
+            gridWidth = 300;
+            cellWidth = Math.floor(canvas.width / gridWidth);
+            gridHeight = Math.floor(canvas.height / cellWidth)
+
+            previous_row = new Array(gridWidth).fill(0)
+            next_row = new Array(gridWidth).fill(0)
+
+            random_initialisation()
+
+            grid.push(previous_row)
+
+            var loop = setInterval(update, 1000/fps)
+        }
+
+        random_initialisation = function() {
+            for (i = 0; i < gridWidth; i ++) {
+                if (Math.random() > 0.5) {
+                    previous_row[i] = 1
+                }
+            }
+        }
+
+        compute_new_row = function() {
+            previous_row = grid[row_index]
+            for (i=0; i < gridWidth; i++) {
+                prev = 100 * previous_row[(gridWidth + i - 1)%gridWidth] + 10 * previous_row[i] + previous_row[(i+1)%gridWidth];
+
+                switch(prev) {
+                    case 111:
+                        next_row[i] = 0;
+                        break;
+                    case 110:
+                        next_row[i] = 0;
+                        break;
+                    case 0:
+                        next_row[i] = 0;
+                        break;
+                    default: next_row[i] = 1;
+                }
+            }
+        }
+
+        update = function() {
+            compute_new_row()
+            grid.push(next_row.slice())
+            row_index++;
+            if (row_index >= gridHeight) {
+                grid.shift()
+                start_updating_epsilon()
+                row_index--;
+            } else {
+                draw()
+            }
+        }
+
+        start_updating_epsilon = function() {
+            epsilon = 0
+            if (!epsilon_updating) {
+                epsilon_updating = true
+                setInterval(update_epsilon, 1000/(cellWidth * fps))
+            }
+        }
+
+        update_epsilon = function() {
+            if (epsilon < cellWidth) {
+                epsilon++
+                draw()
+            }
+            
         }
 
         draw = function() {
-            pixelSize = Math.floor(Math.random() * 30)
-            x = Math.floor(Math.random() * (canvas.width - pixelSize))
-            y = Math.floor(Math.random() * (canvas.height - pixelSize))
-            ctx.fillRect(x, y, pixelSize, pixelSize)
+            ctx.fillStyle = "white";
+            ctx.clearRect(0,0, cellWidth * gridWidth, cellWidth * gridHeight);
+            ctx.fillStyle = "black";
+            for (j = 0; j < grid.length; j++) {
+                for (i=0; i < gridWidth; i++) {
+                    if (grid[j][i] == 1) {
+                        x = i * cellWidth;
+                        y = j * cellWidth;
+                        ctx.fillRect(x, y-epsilon, cellWidth, cellWidth)
+                    }
+                }
+            }
         }
 
         toggleMenu = function() {
