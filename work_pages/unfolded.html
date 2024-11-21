@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <link href="../style.css" rel="stylesheet"  type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<header>
+    <div class="title">
+        <h1><a href="/">Thea Moston</a></h1>
+    </div>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/works.html">Works</a>
+        <a href="/about.html">About</a>
+    </div>
+</header>
+<body>
+    <div class="page-layout">
+        <div class="content">
+            <h2>UNFOLDED</h2>
+            <img width="100%" src="/resources/works/full_size/unfolded.PNG" />
+        </div>
+    </div>
+    <script>
+        toggleMenu = function() {
+            menu = document.getElementById("navbar");
+            if (menu.style.display == 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
