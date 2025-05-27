@@ -1,5 +1,15 @@
+:root {
+    /* --dark: #444433; */
+    --dark: #261603;
+    --light: #faf3de;
+    --highlight:#ebdac5;
+    background: var(--light);
+    color: var(--dark);
+}
+
 body {
     width: auto;
+
 }
 
 header {
@@ -9,7 +19,7 @@ header {
     justify-content: center;
     align-items: center;
     position: fixed;
-    background: white;
+    background: var(--light);
     width: 100%;
     z-index: 10;
     padding-top: 4vh;
@@ -19,8 +29,22 @@ header {
 
 header h1 a {
     text-decoration: none;
-    color: black;
+    color: var(--dark);
 }
+
+.content ul li {
+    list-style: none;
+}
+
+.content a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
 
 .title {
     transition: ease-in-out 450ms;
@@ -42,7 +66,7 @@ header h1 a {
 .navbar a {
     font-size: x-large;
     text-decoration: none;
-    color: black;
+    color: var(--dark);
 }
 
 .navbar a:hover {
@@ -67,9 +91,11 @@ header h1 a {
 }
 
 .work:hover {
-    border: 2px rgb(235, 237, 237) solid;
+    /* border: 2px rgb(235, 237, 237) solid; */
+    border: 2px var(--highlight) solid;
     border-radius: 1%;
-    background: rgb(235, 237, 237);
+    /* background: rgb(235, 237, 237); */
+    background: var(--highlight);
     cursor: pointer;
     transition: ease-in-out 250ms;
 }
@@ -96,7 +122,7 @@ header h1 a {
 
 .work p a {
     text-decoration: none;
-    color: black;
+    color: var(--dark);
 }
 
 

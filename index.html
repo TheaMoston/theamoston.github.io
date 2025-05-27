@@ -11,138 +11,40 @@
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/works.html">Works</a>
-        <a href="/about.html">About</a>
+        <a href="/cv.html">CV</a>
     </div>
 </header>
-<body style="overflow: hidden;">
+
+<body>
     <div class="page-layout">
-        <div class="content" style="overflow: hidden; padding-bottom: 10vw;">
+        <div class="content">
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; align-content: center;">
+                <img style="max-height: 70vh; max-width: 80vw;" src="/resources/about-image.jpeg"/>
+                <div style="width: 20em">
+                    <p>Through the invitation of tactility and craft, Thea (Danish/English, born 2002) works to explore 'crumple zones' 
+                        by drawing on her experience of living in a narrowboat community. Much of Thea's work seeks to maintain a direct 
+                        connection to water through Shibori (fabric steaming). The material is delicately manipulated by repetitively folding, 
+                        twisting and binding &mdash; before surrendering it to be re-shaped in the unpredictable steaming process.</p>
 
-                <canvas id="canvas"></canvas>
-        </div>
+                    <p>Based in Edinburgh, Thea is currently exhibiting her most recent work: 
+                        <a href="https://www.2025.graduateshow.eca.ed.ac.uk/portfolio/thea-moston"><em>Fabric Steaming Through the Crocheted Hole</em>, 
+                            within the 2025 Edinburgh College of Art Graduate Show</a>.</p>
+                    <div style="display: flex; align-items:center;">
+                        <a href="https://www.instagram.com/theamoston/" style="padding-top: 0.2em">
+                            <img src="/resources/Instagram_Glyph.png" style="width: 1em;"/>
+                        </a>
+                        <p>&nbsp <a href="https://www.instagram.com/theamoston/">theamoston</a></p>
+                    </div>
+                    <div style="display: flex; align-items:center;">
+                        <a href="mailto:thea.moston@gmail.com" style="padding-top: 0.2em">
+                            <img src="/resources/envelope.png" style="width: 1em;"/>
+                        </a>
+                        <p>&nbsp <a href="mailto:thea.moston.art@gmail.com">thea.moston.art@gmail.com</a></p>
+                    </div>
+                </div>    
+            </div>
+            <div style="width: 30%">
+                </div>
+       </div>
     </div>
-    <script>
-
-        let grid;
-
-        let gridWidth;
-        let gridHeight;
-
-        let row_index = 0;
-
-        let previous_row;
-        let next_row;
-        let cellWidth;
-
-        let epsilon = 0
-        let epsilon_updating = false
-
-        let fps = 10
-
-        window.onload = function() {
-            canvas = document.getElementById("canvas");
-            ctx = canvas.getContext("2d");
-
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.7;
-            console.log(canvas.width)
-            console.log(canvas.height)
-
-            grid = []
-
-            gridWidth = 300;
-            cellWidth = Math.floor(canvas.width / gridWidth);
-            gridHeight = Math.floor(canvas.height / cellWidth)
-
-            previous_row = new Array(gridWidth).fill(0)
-            next_row = new Array(gridWidth).fill(0)
-
-            random_initialisation()
-
-            grid.push(previous_row)
-
-            var loop = setInterval(update, 1000/fps)
-        }
-
-        random_initialisation = function() {
-            for (i = 0; i < gridWidth; i ++) {
-                if (Math.random() > 0.5) {
-                    previous_row[i] = 1
-                }
-            }
-        }
-
-        compute_new_row = function() {
-            previous_row = grid[row_index]
-            for (i=0; i < gridWidth; i++) {
-                prev = 100 * previous_row[(gridWidth + i - 1)%gridWidth] + 10 * previous_row[i] + previous_row[(i+1)%gridWidth];
-
-                switch(prev) {
-                    case 111:
-                        next_row[i] = 0;
-                        break;
-                    case 110:
-                        next_row[i] = 0;
-                        break;
-                    case 0:
-                        next_row[i] = 0;
-                        break;
-                    default: next_row[i] = 1;
-                }
-            }
-        }
-
-        update = function() {
-            compute_new_row()
-            grid.push(next_row.slice())
-            row_index++;
-            if (row_index >= gridHeight) {
-                grid.shift()
-                start_updating_epsilon()
-                row_index--;
-            } else {
-                draw()
-            }
-        }
-
-        start_updating_epsilon = function() {
-            epsilon = 0
-            if (!epsilon_updating) {
-                epsilon_updating = true
-                setInterval(update_epsilon, 1000/(cellWidth * fps))
-            }
-        }
-
-        update_epsilon = function() {
-            if (epsilon < cellWidth) {
-                epsilon++
-                draw()
-            }
-            
-        }
-
-        draw = function() {
-            ctx.fillStyle = "white";
-            ctx.clearRect(0,0, cellWidth * gridWidth, cellWidth * gridHeight);
-            ctx.fillStyle = "black";
-            for (j = 0; j < grid.length; j++) {
-                for (i=0; i < gridWidth; i++) {
-                    if (grid[j][i] == 1) {
-                        x = i * cellWidth;
-                        y = j * cellWidth;
-                        ctx.fillRect(x, y-epsilon, cellWidth, cellWidth)
-                    }
-                }
-            }
-        }
-
-        toggleMenu = function() {
-            menu = document.getElementById("navbar");
-            if (menu.style.display == 'flex') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'flex';
-            }
-        }
-    </script>
 </body>
