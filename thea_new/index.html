@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Thea Moston — Artist</title>
+</head>
+<body class="mode-fixed-nav">
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-logo" onclick="switchView('exhibitions')">Thea Moston</div>
+        <div class="nav-links">
+            <div class="nav-item active" id="nav-exhibitions" onclick="switchView('exhibitions')">Exhibitions</div>
+            <div class="nav-item" id="nav-experiences" onclick="switchView('experiences')">Experiences</div>
+            <div class="nav-item" id="nav-about" onclick="openAbout()">About</div>
+        </div>
+    </nav>
+
+    <!-- Main Content (Gallery Views) -->
+    <div id="main-content">
+        <div id="home-view">
+            <div class="home-header">
+                <h1 id="gallery-title">Exhibitions</h1>
+                <p id="gallery-subtitle">Select a project to view details</p>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail View (Supports Both Layouts) -->
+    <div id="detail-view">
+        
+        <!-- Container for Gallery Layout -->
+        <div class="detail-container">
+            <div class="image-column" id="detail-image-container">
+                <!-- Images injected by JS -->
+            </div>
+            <div class="text-column">
+                <div class="text-content" id="detail-text-content">
+                    <!-- Text injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for Blog Layout -->
+        <div class="blog-content" id="detail-blog-content">
+            <div class="blog-inner" id="detail-blog-inner">
+                <!-- Blog content injected by JS -->
+            </div>
+        </div>
+    </div>
+    <script src="content.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
